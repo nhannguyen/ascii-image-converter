@@ -40,7 +40,7 @@ def findChar(sample, sample_mean, mean, sigma):
     elif (sample == '0110') | (sample == '0111') | (sample == '1110'):
         return '/'
 
-def render(image):
+def render(image, quality):
     result = ''
     width = image.size[0]
     height = image.size[1]
@@ -64,8 +64,8 @@ def render(image):
     sigma = math.sqrt(sigma / count)
     debug_div = 1
 
-    for y in range(0, height / debug_div - 2, 6):
-        for x in range(0, width / debug_div - 2, 3):
+    for y in range(0, height / debug_div - 2, quality * 2):
+        for x in range(0, width / debug_div - 2, quality):
             sample = ''
             sample_mean = 0
 
@@ -89,10 +89,13 @@ def render(image):
     return result
 
 
-if len(sys.argv) != 2:
-    print("The corrent format is: python convert.py <path/to/image>")
+if (len(sys.argv) != 2) & (len(sys.argv) != 3):
+    print("The corrent format is: python convert.py <path/to/image> [quality]")
 else:
+    quality = 3
+    if len(sys.argv) == 3:
+        quality = int(sys.argv[2])
     path = sys.argv[1]
     image = Image.open(path)
-    result = render(image)
+    result = render(image, quality)
     print result

@@ -62,10 +62,9 @@ def render(image, quality):
     for yiq in yiqs:
         sigma += (yiq - mean) * (yiq - mean)
     sigma = math.sqrt(sigma / count)
-    debug_div = 1
 
-    for y in range(0, height / debug_div - 2, quality * 2):
-        for x in range(0, width / debug_div - 2, quality):
+    for y in range(0, height - 2, quality * 2):
+        for x in range(0, width - 2, quality):
             sample = ''
             sample_mean = 0
 

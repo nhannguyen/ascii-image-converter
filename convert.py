@@ -20,7 +20,7 @@ def findChar(sample, sample_mean, mean, sigma):
         if (sample_mean > mean + sigma) | (sample_mean > 255):
             return ' '
         elif sample_mean > mean + 0.3 * sigma:
-            return '.'
+            return ' '
         elif sample_mean > mean:
             return '*'
     elif (sample == '1000') | (sample == '0010'):
@@ -88,13 +88,13 @@ def render(image, quality):
     return result
 
 
-if (len(sys.argv) != 2) & (len(sys.argv) != 3):
-    print("The corrent format is: python convert.py <path/to/image> [quality]")
-else:
-    quality = 3
-    if len(sys.argv) == 3:
-        quality = int(sys.argv[2])
-    path = sys.argv[1]
-    image = Image.open(path)
-    result = render(image, quality)
-    print result
+#if (len(sys.argv) != 2) & (len(sys.argv) != 3):
+    #print("The corrent format is: python convert.py <path/to/image> [quality]")
+#else:
+    #quality = 3
+    #if len(sys.argv) == 3:
+        #quality = int(sys.argv[2])
+    #path = sys.argv[1]
+    #image = Image.open(path)
+    #result = render(image, quality)
+    #print result
